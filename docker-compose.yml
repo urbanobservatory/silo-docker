@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  silo:
+    build: .
+    command:
+      - config.xml
+      - --config:controler.lastIteration
+      - "10"
+    environment:
+      SILO_OUTPUT_OVERWRITE: "true"
+    volumes:
+      - type: bind
+        source: ${PWD}/test/input
+        target: /opt/silo/data/input
+#      - type: bind
+#        source: ${PWD}/test/output
+#        target: /opt/silo/data/output
