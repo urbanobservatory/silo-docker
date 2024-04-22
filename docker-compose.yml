@@ -10,7 +10,7 @@ services:
       SILO_OUTPUT_OVERWRITE: "true"
     volumes:
       - type: bind
-        source: ${PWD}/test/input
+        source: ${PWD}/useCases/maryland/test
         target: /opt/silo/data/input
 #      - type: bind
 #        source: ${PWD}/test/output

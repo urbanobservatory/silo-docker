@@ -8,7 +8,7 @@ COPY . ./
 RUN apt-get update && apt-get install -y \
     figlet \
     && rm -rf /var/lib/apt/lists/*
-# Cache build dependencies (optional): --mount=type=cache,target=/root/.m2
+# Cache build dependencies locally (optional): --mount=type=cache,target=/root/.m2
 RUN --mount=type=cache,target=/root/.m2 mvn -e -f pom.xml -DskipTests clean package \
     && echo "$(mvn -q help:evaluate -Dexpression=project.version -DforceStdout=true)" > VERSION.txt \
     && figlet -f slant "SILO $(cat VERSION.txt)" > BANNER.txt \
@@ -31,6 +31,6 @@ RUN apt-get update && apt-get install -y \
 #    && mkdir -p ${SILO_OUTPUT}
 VOLUME ${APP_DIR}/data
 RUN ["chmod", "+x", "./docker-entrypoint.sh"]
-ENTRYPOINT ["./docker-entrypoint.sh", "java", "-jar", "silo.jar", "/opt/silo/data/input/test/scenarios/annapolis/javaFiles/siloMatsim_multiYear.properties", "/opt/silo/data/input/test/scenarios/annapolis/matsim_input/config.xml"]
+ENTRYPOINT ["./docker-entrypoint.sh", "java", "-jar", "silo.jar", "/opt/silo/data/input/scenarios/annapolis/javaFiles/siloMatsim_multiYear.properties", "/opt/silo/data/input/scenarios/annapolis/matsim_input/config.xml"]
 #ENTRYPOINT ["./docker-entrypoint.sh", "java", "-cp", "silo.jar", "de.tum.bgu.msm.transportModel.matsim.SiloMatsimMultiYearTest"]
 #ENTRYPOINT ["./docker-entrypoint.sh", "java", "-cp", "maryland:silo.jar", "de.tum.bgu.msm.run.SiloMstm", "/opt/silo/data/input/test/scenarios/annapolis/javaFiles/siloMatsim_multiYear.properties", "/opt/silo/data/input/test/scenarios/annapolis/matsim_input/config.xml"]
