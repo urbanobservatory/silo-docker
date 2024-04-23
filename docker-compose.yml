@@ -1,7 +1,12 @@
 version: "3.9"
 services:
   silo:
-    build: .
+    build:
+      context: .
+      args:
+        PROPERTIES_FILE: /opt/silo/data/scenarios/annapolis/javaFiles/siloMatsim_multiYear.properties
+        CONFIG_FILE: /opt/silo/data/scenarios/annapolis/matsim_input/config.xml
+        USE_CASE: maryland
     command:
       - config.xml
       - --config:controler.lastIteration
@@ -11,7 +16,4 @@ services:
     volumes:
       - type: bind
         source: ${PWD}/useCases/maryland/test
-        target: /opt/silo/data/input
-#      - type: bind
-#        source: ${PWD}/test/output
-#        target: /opt/silo/data/output
+        target: /opt/silo/data
