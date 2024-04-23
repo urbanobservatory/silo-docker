@@ -14,14 +14,10 @@ RUN --mount=type=cache,target=/root/.m2 mvn -e -f pom.xml -DskipTests clean pack
 
 FROM openjdk:11-slim
 ARG APP_DIR
-ARG PROPERTIES_FILE
-ARG CONFIG_FILE
 ARG USE_CASE
 WORKDIR ${APP_DIR}
 ENV SILO_HOME=${APP_DIR} \
     SILO_INPUT=${APP_DIR}/data \
-    PROPERTIES_FILE=${PROPERTIES_FILE} \
-    CONFIG_FILE=${CONFIG_FILE} \
     USE_CASE=${USE_CASE}
 COPY docker-entrypoint.sh ./
 COPY --from=build ${APP_DIR}/*.txt ./resources/
@@ -33,4 +29,4 @@ RUN apt-get update && apt-get install -y \
     && mkdir -p ${SILO_INPUT}
 VOLUME ${APP_DIR}/data
 RUN ["chmod", "+x", "./docker-entrypoint.sh"]
-ENTRYPOINT ./docker-entrypoint.sh java -jar silo.jar $PROPERTIES_FILE $CONFIG_FILE
+ENTRYPOINT ./docker-entrypoint.sh java -jar silo.jar

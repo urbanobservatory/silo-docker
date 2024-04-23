@@ -4,8 +4,6 @@ services:
     build:
       context: .
       args:
-        PROPERTIES_FILE: /opt/silo/data/scenarios/annapolis/javaFiles/siloMstm.properties
-        CONFIG_FILE: /opt/silo/data/scenarios/annapolis/matsim_input/config.xml
         USE_CASE: maryland
     command:
       - config.xml
@@ -13,6 +11,8 @@ services:
       - "10"
     environment:
       SILO_OUTPUT_OVERWRITE: "true"
+      PROPERTIES_FILE: /opt/silo/data/scenarios/annapolis/javaFiles/siloMatsim_multiYear.properties
+      CONFIG_FILE: /opt/silo/data/scenarios/annapolis/matsim_input/config.xml
     volumes:
       - type: bind
         source: ${PWD}/useCases/maryland/test
