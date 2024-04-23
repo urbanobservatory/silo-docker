@@ -3,6 +3,7 @@
 Forked from: https://github.com/msmobility/silo
 
 ## Setting up a new location
+Use Maryland use case as a template and file structure example. \
 ...
 
 ## Edit .properties
@@ -19,3 +20,6 @@ Forked from: https://github.com/msmobility/silo
     docker compose up
 
 Changes made to docker-compose arguments, properties, and config.xml file do not require rebuilding the image.
+
+## Outputs
+Outputs can be found within generated `scenOutput` file within your scenario.

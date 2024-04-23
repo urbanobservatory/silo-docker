@@ -4,7 +4,7 @@ services:
     build:
       context: .
       args:
-        PROPERTIES_FILE: /opt/silo/data/scenarios/annapolis/javaFiles/siloMatsim_multiYear.properties
+        PROPERTIES_FILE: /opt/silo/data/scenarios/annapolis/javaFiles/siloMstm.properties
         CONFIG_FILE: /opt/silo/data/scenarios/annapolis/matsim_input/config.xml
         USE_CASE: maryland
     command:
