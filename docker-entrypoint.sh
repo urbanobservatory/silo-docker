@@ -16,8 +16,7 @@ $(env -0 | sort -z | tr '\0  ' '\n' | grep SILO | awk '{print "  ", $0}')"
 _print_help_input() {
     help_text_input="
 Error: The input directory $SILO_INPUT is empty.
-Use the volume flag to bind a directory with the SILO
-input files from the host to the conatiner.
+Check source directory in docker-compose.yml.
 
 Exiting."
     printf '%s\n' "$help_text_input"
